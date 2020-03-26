@@ -1,9 +1,13 @@
 from flask import Flask, render_template, request, send_file
 from werkzeug import secure_filename
 import os
-import pandas as pd
 app = Flask(__name__)
 #app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024 #파일 업로드 용량 제한 단위:바이트
+
+@app.errorhandler(404)
+def page_not_found(error):
+	app.logger.error(error)
+	return render_template('page_not_found.html'), 404
 
 #HTML 렌더링
 @app.route('/')
@@ -48,4 +52,4 @@ def down_file():
 
 if __name__ == '__main__':
 	#서버 실행
-	app.run(host='0.0.0.0', port=8080, debug = True)
+	app.run(host='0.0.0.0', debug = True)
