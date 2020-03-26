@@ -16,7 +16,7 @@ class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(80), unique=True)
 	password = db.Column(db.String(80))
-	email = db.Column(db.String(80))
+	email = db.Column(db.String(80), unique=True)
 
 	def __init__(self, username, password, email):
 		self.username = username
@@ -57,8 +57,11 @@ def register():
 	if request.method == 'POST':
 		new_user = User(username=request.form['username'], password=request.form['password'], 
 			email=request.form['email'])
-		db.session.add(new_user)
-		db.session.commit()
+
+		data = User.query.filter(User.username == 'dsz08082').all()
+		app.logger.debug(data)
+		#db.session.add(new_user)
+		#db.session.commit()
 		return render_template('login.html')
 	return render_template('register.html')
 
