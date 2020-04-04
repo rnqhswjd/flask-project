@@ -1,24 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
+<meta charset="UTF-8">
 <html>
-<body>
- <h1>Email System</h1>
- <h1>{{ content }}</h1>
- <form action="/email" method=post>
-  <dl>
-   <dt>Email_Sender:</dt>
-   <dd>
-    <input type="text" name=email_sender value="" />
-   </dd>
-   <dt>Email_Receiver:</dt>
-   <dd>
-    <input type="text" name=email_receiver value="" />
-   </dd>
-   <dt>Content:</dt>
-   <dd>
-    <input type="text" name=email_content value="">
-   </dd>
-  </dl>
-  <p><input type=submit value=SEND></p>
- </form>
-</body>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='file.css') }}">
+  </head>
+
+  <body>
+    <div id="message">
+     <div id="subject"><h1>Email System</h1></div>
+     <h1>{{ content }}</h1>
+     <form action="/email" id="email-form" method=post>
+      <label class="lgend">수신 이름</label>
+      <input type="text" name=email_sender value=""/>
+
+      <label class="lgend">보낼 이메일 주소</label>
+      <input type="text" name=email_receiver value="" />   
+
+      <label class="lgend">내용</label>
+      <textarea type="text" name=email_content value="" cols="50" rows="10"></textarea>
+      <input type=submit value="보내기">
+     </form>
+    </div>
+  </body>
 </html>

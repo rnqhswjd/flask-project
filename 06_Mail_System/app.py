@@ -1,15 +1,18 @@
+from flask import Flask, request, render_template
 from flask_mail import Mail, Message
 
 app = Flask(__name__)
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = "jhsm9534"
+app.config['MAIL_USERNAME'] = "jhsm9534@gmail.com"
 app.config['MAIL_PASSWORD'] = 'zkjhs9534'
-app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USE_TLS'] = False
+mail = Mail(app)
 
 @app.route("/email", methods=['post', 'get'])
 def email_test():
+   
     if request.method == 'POST':
         senders = request.form['email_sender']
         receiver = request.form['email_receiver']
@@ -20,9 +23,9 @@ def email_test():
             receiver[i] = receiver[i].strip()
            
         print(receiver)
- 
+       
         result = send_email(senders, receiver, content)
-      
+       
         if not result:
             return render_template('email.html', content="Email is sent")
         else:
@@ -32,14 +35,10 @@ def email_test():
         return render_template('email.html')
    
 def send_email(senders, receiver, content):
-    try:
-        mail = Mail(app)
-        msg = Message('Title', sender = senders, recipients = receiver)
-        msg.body = content
-        mail.send(msg)
-    except Exception:
-        pass
-    finally:
-        pass
+    msg = Message('Title', sender = senders, recipients = receiver)
+    msg.body = content
+    mail.send(msg)
 
-   
+if __name__=='__main__':
+    app.secret_key = "123123123"
+    app.run()
