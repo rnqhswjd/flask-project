@@ -1,0 +1,26 @@
+<html>
+    {% extends "base.html" %}
+    {% block content %}
+    <center><div>
+        {% if front_answer == None %}
+        <div id="message">
+            <center><p>계산할 값을 입력하세요.</p></center>
+        </div><br>
+
+        <form action="/calculate">
+            <input name='input1' type="text"> 곱하기
+            <input name='input2' type="text">
+            <input type="submit">
+        </form>
+
+    {% else %}
+        <h1>정답은!!!</h1>
+            {{ front_answer }}
+        <form action="/">
+            <input type="submit" value='홈으로 돌아가기'>
+        </form>
+        
+    {% endif %}
+    {% endblock %}
+    </div></center>
+</html>
