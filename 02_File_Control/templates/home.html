@@ -1,24 +1,19 @@
-<!DOCTYPE html>
-<meta charset="UTF-8">
-<html>
-  <head>
-    <title>ftp_page</title>
-  </head>
+{% extends "base.html" %}
+{% block content %}
+<body style="text-align: center;">    
+  <h3>Home</h3>
+  <hr width="100%" color="black"/>
+
+  <table class="table table-borderless" style="margin-left: auto; margin-right: auto;">
+    <tr>
+      <td><img src="{{ url_for('static',filename='images/upload.png') }}", width="50")/></td>
+      <td><img src="{{ url_for('static',filename='images/download.png') }}", width="50")/></td>
+    </tr>
     
-  <body>
-    <center><h1>FTP Server</h1></center>
-    <hr width="100%" color="black"/>
-
-    <center>
-    <form>
-    <img src="{{ url_for('static',filename='images/upload.png') }}", width="50" 
-        style="margin-left: auto; margin-right: auto; display: block;")/>
-    <a href="./upload">파일 업로드</a><br><br><br>
-
-    <img src="{{ url_for('static',filename='images/download.png') }}", width="50" 
-        style="margin-left: auto; margin-right: auto; display: block;")/>
-    <a href="./downfile">파일 다운로드</a>
-    </form>
-    </center>
-  </body>
-</html>
+    <tr>
+      <td><a href="./upload">파일 업로드</a></td>
+      <td><a href="./downfile">파일 다운로드</a></td>
+    </tr>
+  </table>
+</body>
+{% endblock %}

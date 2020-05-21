@@ -1,26 +1,38 @@
 <html>
     {% extends "base.html" %}
     {% block content %}
-    <center><div>
-        {% if front_answer == None %}
-        <div id="message">
-            <center><p>계산할 값을 입력하세요.</p></center>
-        </div><br>
+    <center>
+        <div>
+        <h1>계산기 :)</h1>
+        {% if render_answer == None %}
+            <div id="message">
+                <p>계산할 값을 입력하세요.</p>
+            </div><br>
 
-        <form action="/calculate">
-            <input name='input1' type="text"> 곱하기
-            <input name='input2' type="text">
-            <input type="submit">
-        </form>
+            <form action="/calculate" id=calculate>
+                <input name='input1' type="text">
+                <select name='inputc'>
+                  <option value='' selected>-- 연산자 선택 --</option>
+                  <option value='plus'>+</option>
+                  <option value='minus'>-</option>
+                  <option value='multiply'>*</option>
+                  <option value='div'>/</option>
+                </select>
+                <input name='input2' type="text">
+                <br><br><input type="submit">
+            </form>
 
-    {% else %}
-        <h1>정답은!!!</h1>
-            {{ front_answer }}
-        <form action="/">
-            <input type="submit" value='홈으로 돌아가기'>
-        </form>
-        
-    {% endif %}
-    {% endblock %}
-    </div></center>
+        {% else %}
+            <div id="message">
+                <p>계산된 값입니다.</p>
+            </div><br>
+            <h2>{{ render_answer }}</h2>
+            <form action="/">
+                <input type="submit" value='홈으로 돌아가기'>
+            </form>
+
+        {% endif %}
+        {% endblock %}
+        </div>
+    </center>
 </html>

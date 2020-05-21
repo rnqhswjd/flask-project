@@ -58,10 +58,8 @@ def register():
 		new_user = User(username=request.form['username'], password=request.form['password'], 
 			email=request.form['email'])
 
-		data = User.query.filter(User.username == 'dsz08082').all()
-		app.logger.debug(data)
-		#db.session.add(new_user)
-		#db.session.commit()
+		db.session.add(new_user)
+		db.session.commit()
 		return render_template('login.html')
 	return render_template('register.html')
 

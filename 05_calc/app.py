@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 def hello_world(url_answer=None):
     answer = url_answer
-    return render_template('gu_main.html',render_answer = answer)
+    return render_template('main.html',render_answer = answer)
 
 @app.route('/calculate')
 def calculate():
